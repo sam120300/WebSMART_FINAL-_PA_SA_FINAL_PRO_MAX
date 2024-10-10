@@ -67,7 +67,7 @@ $user_type = ($_settings->userdata('user_type'));
             <?php }?>
             <span class="mx-2" style="position: relative;">
               <a href="
-              <?php if ($_settings->userdata('type') == 2 || $_settings->userdata('type') == 3){
+              <?php if ($_settings->userdata('type') == 2 || $_settings->userdata('type') == null){
                 echo "/WebSMART/admin"; 
                 } else {
 
@@ -85,7 +85,7 @@ $user_type = ($_settings->userdata('user_type'));
               </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <?php if($_settings->userdata('type') != 2){?>
+                <?php if(($_settings->userdata('type') != 2) && ($_settings->userdata('type') != null)){?>
                 <li><a class="dropdown-item text-center text-primary" href="?page=profile">My Account <i class="fa-solid fa-user"></i></a></li>
                 <?php }?>
                 <li><a class="dropdown-item text-danger text-center" href="<?= base_url.'classes/Login.php?f=student_logout' ?>">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
