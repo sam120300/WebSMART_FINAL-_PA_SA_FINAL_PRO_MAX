@@ -18,6 +18,14 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         $type = $row['type'];
         $style = $row['style'];
     }
+
+    $sql1 = "SELECT * FROM research_type WHERE id = '$type'";
+    $result1 = mysqli_query($conn, $sql1);
+    $row1 = mysqli_fetch_assoc($result1);
+
+    $sql2 = "SELECT * FROM reference_style WHERE id = '$style'";
+    $result2 = mysqli_query($conn, $sql2);
+    $row2 = mysqli_fetch_assoc($result2);
 }
 ?>
 
@@ -196,12 +204,12 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     </center> -->
                     <fieldset>
                         <legend class="text-navy">Research Type:</legend>
-                        <div class="pl-4"><large><?= isset($type) ? htmlspecialchars($type) : "----" ?></large></div>
+                        <div class="pl-4"><large><?= isset($type) ? htmlspecialchars($row1['type']) : "----" ?></large></div>
                     </fieldset>
 
                     <fieldset>
                         <legend class="text-navy">Reference Style:</legend>
-                        <div class="pl-4"><large><?= isset($style) ? htmlspecialchars($style) : "----" ?></large></div>
+                        <div class="pl-4"><large><?= isset($style) ? htmlspecialchars($row2['style']) : "----" ?></large></div>
                     </fieldset>
 
                     <fieldset>

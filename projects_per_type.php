@@ -172,7 +172,7 @@ if(isset($_GET['id'])){
                 $count_all = $conn->query("SELECT * FROM archive_list {$wheredid} AND status = 1")->num_rows;    
                 $pages = ceil($count_all/$limit);
                 $archives = $conn->query("
-                    SELECT a.*, c.department_id, d.name AS department_name, res.type, res.id
+                    SELECT a.*, a.id as archive_id, c.department_id, d.name AS department_name, res.type, res.id
                     FROM archive_list a
                     JOIN curriculum_list c ON a.curriculum_id = c.id
                     JOIN department_list d ON c.department_id = d.id
@@ -189,7 +189,7 @@ if(isset($_GET['id'])){
                         $row['abstract'] = strip_tags(html_entity_decode($row['abstract']));
                         $dept_id = $row['department_id'];
                     ?>
-                    <a href="./?page=view_archive&id=<?= $row['id'] ?>" class="text-decoration-none text-dark list-group-item list-group-item-action">
+                    <a href="./?page=view_archive&id=<?= $row['archive_id'] ?>" class="text-decoration-none text-dark list-group-item list-group-item-action">
                         <div class="row">
                             <div class="col-lg-2 col-md-2 col-sm-12 text-center">
                             <img style="width: 100px;" src="<?php
